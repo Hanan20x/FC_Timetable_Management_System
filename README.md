@@ -3,19 +3,19 @@
 A mobile-friendly **Single Page Application (SPA)** for students and lecturers at the **Faculty of Computing, Universiti Teknologi Malaysia (UTM)** to access and manage academic timetables from any device.
 
 > **Course**: Software Construction  
-> **Lecturer**: Dr. Mohd Razak bin Samingan  
-> **Group**: Delta
+> **Lecturer**: Dr. Adila Firdaus  
 
 ---
 
 ## 👥 Team Members
 
-- Ahmad Muawya Sufyan Fakhruddin  
-- Aqilla Noorshaumy  
-- Esha Shuberthee  
-- Mariam Hanif  
-- Raghad Zeinalabdin Taha Osman  
-- Chong Yaen Li  
+| Name | Matric No |
+|------|-----------|
+| MUSTAFA TARIG ABDELWAHID ALI | A22EC0022 |
+| WANG YAPENG | A21EC4035 |
+| AHMED MUSTAFA MOHAMED IBRAHIM | A22EC9148 |
+| HANAN OSAMA HUSSEIN SALAH | A22EC4042 |
+| RAGHAD ZEINALABDIN TAHA OSMAN | A22EC9002 |
 
 ---
 
@@ -38,7 +38,7 @@ A mobile-friendly **Single Page Application (SPA)** for students and lecturers a
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/FC_Timetable_Management_System.git
+git clone https://github.com/Hanan20x/FC_Timetable_Management_System.git
 cd FC_Timetable_Management_System
 ```
 
