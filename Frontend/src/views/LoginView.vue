@@ -11,13 +11,13 @@
 
       <!-- Form -->
       <form @submit.prevent="handleLogin" novalidate>
-        <!-- Email Field -->
+        <!-- Username Field -->
         <div class="mb-4">
-          <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Matric Number / Username</label>
           <input
             v-model.trim="email"
             type="text"
-            placeholder="Staff number or Matric"
+            placeholder="e.g., A22EC0000 or ali.b"
             class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <p v-if="errors.email" class="mt-1 text-sm text-red-600">
@@ -98,27 +98,31 @@ export default {
         return;
       }
 
-      // Build URL
-      const baseUrl = "http://web.fc.utm.my/ttms/web_man_webservice_json.cgi";
-      const params = new URLSearchParams({
-        entity: "authentication",
-        login: this.email,
-        password: this.password,
-      });
-      const url = `${baseUrl}?${params.toString()}`;
+      // Build URL to our local RESTful backend!
+      const url = "http://localhost:3000/api/auth/login";
 
       this.loading = true;
       try {
-        const res = await fetch(url);
-        const json = await res.json();
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            login: this.email,
+            password: this.password
+          })
+        });
 
-        if (!Array.isArray(json) || json.length === 0) {
-          throw new Error("No session returned");
+        if (!res.ok) {
+          throw new Error("Invalid credentials");
         }
 
-        // Save session exactly as old app did
-        localStorage.setItem("web.fc.utm.my_usersession", JSON.stringify(json[0]));
-        console.log("Session saved:", json[0]);
+        const json = await res.json();
+
+        // Save session
+        localStorage.setItem("web.fc.utm.my_usersession", JSON.stringify(json.userSession));
+        console.log("Session saved:", json.userSession);
         // Redirect to Profile page
         this.$router.push({ name: "Profile" });
       } catch (err) {
